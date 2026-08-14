@@ -3,7 +3,7 @@
 #include "Constants.hpp"
 #include "ServoController.hpp"
 
-int servosPos[NUM_SERVOS] = {0};
+static u_int8_t servosPos[NUM_SERVOS] = {0};
 
 // Servo objects for each of the 8 servos
 static Servo servos[NUM_SERVOS];
@@ -50,11 +50,15 @@ void setServo(int index, int requestedAngle) {
     );
 
     servos[index].write(actualAngle);
-    servosPos[index] = actualAngle;
+    servosPos[index] = requestedAngle; // Store the requested angle, not the actual angle
 }
 
 void setServos(const u_int8_t angles[NUM_SERVOS]) {
     for (int i = 0; i < NUM_SERVOS; i++) {
         setServo(i, angles[i]);
     }
+}
+
+u_int8_t* getServosPos() {
+    return servosPos;
 }

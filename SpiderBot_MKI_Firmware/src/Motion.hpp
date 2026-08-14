@@ -26,20 +26,35 @@ const Motion idleMotion = {
     .keyframes = {
         {
             .angles = {45, 180, 45, 180, 45, 180, 45, 180},
-            .loops = 100
+            .loops = 200
+        },
+        {
+            .angles = {45, 90, 45, 90, 45, 90, 45, 90},
+            .loops = 200
         }
     },
-    .keyframeCount = 1
+    .keyframeCount = 2
 };
 
 const Motion lieMotion = {
     .keyframes = {
         {
             .angles = {45, 90, 45, 90, 45, 90, 45, 90},
-            .loops = 100
+            .loops = 2000
         }
     },
     .keyframeCount = 1
 };
+
+inline Motion getMotion(MotionState state) {
+    switch (state) {
+        case IDLE:
+            return idleMotion;
+        case LYING:
+            return lieMotion;
+        default:
+            return idleMotion; // Default to idle if unknown state
+    }
+}
 
 #endif // MOTION_HPP

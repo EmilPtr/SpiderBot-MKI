@@ -4,13 +4,6 @@
 #include "Constants.hpp"
 
 /**
- * @brief Array to hold the current positions of all servos.
- * 
- * This array is updated whenever a servo's position is set using setServo().
- */
-extern int servosPos[NUM_SERVOS];
-
-/**
  * @brief Initialize all servos and attach them to their respective pins.
  */
 void initServos();
@@ -38,5 +31,12 @@ void setServo(int index, int requestedAngle);
  * @param angles An array of desired logical angles (0-180) for each servo.
  */
 void setServos(const u_int8_t angles[NUM_SERVOS]);
+
+/**
+ * @brief Get the current positions of all servos.
+ * 
+ * @return A pointer to an array containing the current angles of all servos.
+ */
+u_int8_t* getServosPos();
 
 #endif // SERVO_CONTROLLER_HPP
