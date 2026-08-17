@@ -1,6 +1,6 @@
 #include "ControlHandler.hpp"
 
-MotionState prevState = LYING;
+MotionState prevState = IDLE;
 
 void updateRobotState(MotionState state) {
     if (state != prevState) {

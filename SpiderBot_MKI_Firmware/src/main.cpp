@@ -6,7 +6,7 @@
 
 static unsigned long pastMillis = 0;
 
-MotionState state = IDLE;
+MotionState state = TURNING_RIGHT;
 static bool isMoving = true;
 
 void setup() {
@@ -17,10 +17,10 @@ void setup() {
     setServo(SERVO_FR_SIDE, 45);
     setServo(SERVO_RL_SIDE, 45);
     setServo(SERVO_RR_SIDE, 45);
-    setServo(SERVO_FL_UP, 90);
-    setServo(SERVO_FR_UP, 90);
-    setServo(SERVO_RL_UP, 90);
-    setServo(SERVO_RR_UP, 90);
+    setServo(SERVO_FL_UP, 180);
+    setServo(SERVO_FR_UP, 180);
+    setServo(SERVO_RL_UP, 180);
+    setServo(SERVO_RR_UP, 180);
     delay(500);
 }
 

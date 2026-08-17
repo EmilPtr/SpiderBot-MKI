@@ -4,13 +4,13 @@
 #include <Easing.h>
 #include <Arduino.h>
 
-EasingFunc<Ease::SineOut> interpolator;
+EasingFunc<Ease::Linear> interpolator;
 
 static int loopCounter = 0;
 static int keyframeIndex = 0;
 static MotionState currentState = LYING;
 
-static uint8_t startAnglesBuffer[NUM_SERVOS];
+static int startAnglesBuffer[NUM_SERVOS];
 
 void resetStateMachine(MotionState state) {
     currentState = state;
@@ -18,22 +18,25 @@ void resetStateMachine(MotionState state) {
     keyframeIndex = 0;
 }
 
-void commandMotion(u_int8_t* start, u_int8_t* target, int loops) {
+void commandMotion(int* start, int* target, int loops) {
     float progress = loopCounter / (float)loops; // Calculate progress as a float between 0 and 1
     float easedProgress = interpolator.get(progress); // Apply easing function
 
     for (int i = 0; i < NUM_SERVOS; i++) {
         int startAngle = start[i];
         int targetAngle = target[i];
+    
         int error = targetAngle - startAngle;
         int newAngle = startAngle + (error * easedProgress);
+
         setServo(i, newAngle);
     }
 }
 
 void updateStateMachine() {
-    u_int8_t* startingPoint = nullptr;
-    u_int8_t* targetPoint = nullptr;
+    int* startingPoint = nullptr;
+    int* targetPoint = nullptr;
+
     if (keyframeIndex == 0) {
         if (loopCounter == 0) {
             // Store the current servo angles as the starting point for the first keyframe
@@ -41,6 +44,7 @@ void updateStateMachine() {
                 startAnglesBuffer[i] = getServosPos()[i];
             }
         }
+
         startingPoint = startAnglesBuffer;
         targetPoint = getMotion(currentState).keyframes[keyframeIndex].angles;
     } else {
@@ -52,6 +56,7 @@ void updateStateMachine() {
         loopCounter++;
     } else {
         keyframeIndex++;
+
         if (keyframeIndex >= getMotion(currentState).keyframeCount) {
             keyframeIndex = 0; // Loop back to the first keyframe
         }

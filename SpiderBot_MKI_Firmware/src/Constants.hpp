@@ -23,14 +23,14 @@ const int servoPins[NUM_SERVOS] = {
 
 // Minimum safe angle for each servo
 const int servoMin[NUM_SERVOS] = {
-    0, 0, 60, 0,
-    60, 0, 0, 0
+    0, 0, 0, 0,
+    0, 0, 0, 0
 };
 
 // Maximum safe angle for each servo
 const int servoMax[NUM_SERVOS] = {
-    120, 180, 180, 180,
-    180, 180, 120, 180
+    120, 180, 120, 180,
+    120, 180, 120, 180
 };
 
 // Calibration offset for each servo.
@@ -58,7 +58,7 @@ const bool inverted[8] = {
 };
 
 //#################################MOTION DEFINITIONS#################################
-#define MAX_KEYFRAMES 16
+#define MAX_KEYFRAMES 18
 #define LOOP_DURATION 5 // ms, 200Hz loop
 
 #endif // CONSTANTS_HPP
