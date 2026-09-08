@@ -22,8 +22,10 @@ enum MotionState {
     IDLE,
     LYING,
     WALKING,
+    BACKWARD,
     TURNING_LEFT,
-    TURNING_RIGHT
+    TURNING_RIGHT,
+    STOPPED
 };
 
 struct Keyframe {
@@ -77,7 +79,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (2 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
 
@@ -99,7 +101,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (3 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
     {
@@ -116,7 +118,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (4 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
 
@@ -138,7 +140,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (5 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
     {
@@ -155,7 +157,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (6 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
 
@@ -177,7 +179,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (7 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
     {
@@ -194,7 +196,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (8 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
 
@@ -216,7 +218,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (9 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
     {
@@ -233,7 +235,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (10 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
 
@@ -255,7 +257,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (11 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
     {
@@ -272,7 +274,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (12 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
 
@@ -294,7 +296,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (7 * UNIT_WALK),
             LEG_GAIT_UP
         },
-        .loops = 15
+        .loops = 5
     },
 
     {
@@ -311,7 +313,7 @@ const Motion walkMotion = {
             HOME_WALK_B,
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
 
@@ -333,7 +335,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (1 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
     {
@@ -350,7 +352,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (2 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
 
@@ -372,7 +374,7 @@ const Motion walkMotion = {
             HOME_WALK_B - (3 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     },
 
     {
@@ -389,14 +391,968 @@ const Motion walkMotion = {
             HOME_WALK_B - (4 * UNIT_WALK),
             LEG_PLANT
         },
-        .loops = 15
+        .loops = 5
     }
 },
 
 .keyframeCount = 17
 };
 
+const Motion backwardMotion = {
 
+    .keyframes = {
+
+        // ─────────────────────────────────────────
+        // START
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F,
+                LEG_PLANT,
+                HOME_WALK_F - (4 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (2 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (1 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (5 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (7 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (2 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (6 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (8 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (4 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT LB
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (3 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (7 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_GAIT_UP,
+                HOME_WALK_B + (5 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (4 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (8 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B,
+                LEG_PLANT,
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (5 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (9 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (1 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (7 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (6 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (10 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (2 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (8 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT RF
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (7 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (5 * UNIT_WALK),
+                LEG_GAIT_UP,
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (9 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (8 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F,
+                LEG_PLANT,
+                HOME_WALK_B + (4 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (10 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (9 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (1 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (5 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (11 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (10 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (2 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (12 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT RB
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (11 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (3 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (7 * UNIT_WALK),
+                LEG_GAIT_UP
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (12 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (4 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (4 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B,
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (13 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (5 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (5 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (1 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (14 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_F - (6 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (2 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT LF
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (11 * UNIT_WALK),
+                LEG_GAIT_UP,
+                HOME_WALK_F - (7 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (7 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F,
+                LEG_PLANT,
+                HOME_WALK_F - (4 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (8 * UNIT_WALK),
+                LEG_PLANT,
+                HOME_WALK_B + (4 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        }
+    },
+
+    .keyframeCount = 17
+};
+
+const Motion turnLeftMotion = {
+
+    .keyframes = {
+
+        // ─────────────────────────────────────────
+        // START
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F,
+                LEG_PLANT,
+
+                HOME_WALK_F + (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B,
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (1 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (1 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (2 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (8 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (2 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT LB
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (3 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_GAIT_UP,
+
+                HOME_WALK_B - (3 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (8 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (0 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (4 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (9 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (1 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (5 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (10 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (2 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (6 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT RF
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (5 * UNIT_WALK),
+                LEG_GAIT_UP,
+
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (7 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (8 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (0 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (8 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (9 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (1 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (9 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (10 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (2 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (10 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT RB
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (11 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (3 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (7 * UNIT_WALK),
+                LEG_GAIT_UP
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (12 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (0 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (13 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (1 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F - (14 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F + (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (2 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT LF
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F - (11 * UNIT_WALK),
+                LEG_GAIT_UP,
+
+                HOME_WALK_F + (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (3 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // RETURN TO START
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F,
+                LEG_PLANT,
+
+                HOME_WALK_F + (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B,
+                LEG_PLANT
+            },
+            .loops = 5
+        }
+    },
+
+    .keyframeCount = 17
+};
+
+const Motion turnRightMotion = {
+
+    .keyframes = {
+
+        // ─────────────────────────────────────────
+        // START
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F,
+                LEG_PLANT,
+
+                HOME_WALK_F - (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B,
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F + (1 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (1 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F + (2 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (8 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (2 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT LB
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F + (3 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (3 * UNIT_WALK),
+                LEG_GAIT_UP,
+
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F + (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (8 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B,
+                LEG_PLANT,
+
+                HOME_WALK_B + (4 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F + (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (9 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (1 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (5 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F + (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (10 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (2 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (6 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT RF
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F + (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (5 * UNIT_WALK),
+                LEG_GAIT_UP,
+
+                HOME_WALK_B - (3 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (7 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F + (8 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F,
+                LEG_PLANT,
+
+                HOME_WALK_B - (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (8 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F + (9 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (1 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (9 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F + (10 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (2 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (10 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT RB
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F + (11 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (3 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (3 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (7 * UNIT_WALK),
+                LEG_GAIT_UP
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F + (12 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B,
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // CREEP × 2
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F + (13 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (5 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (1 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        {
+            .angles = {
+                HOME_WALK_F + (14 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_F - (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (2 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // LIFT LF
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F + (11 * UNIT_WALK),
+                LEG_GAIT_UP,
+
+                HOME_WALK_F - (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (7 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B + (3 * UNIT_WALK),
+                LEG_PLANT
+            },
+            .loops = 5
+        },
+
+        // ─────────────────────────────────────────
+        // RETURN TO START
+        // ─────────────────────────────────────────
+
+        {
+            .angles = {
+                HOME_WALK_F,
+                LEG_PLANT,
+
+                HOME_WALK_F - (4 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B - (6 * UNIT_WALK),
+                LEG_PLANT,
+
+                HOME_WALK_B,
+                LEG_PLANT
+            },
+            .loops = 5
+        }
+    },
+
+    .keyframeCount = 17
+};
 
 inline Motion getMotion(MotionState state) {
     switch (state) {
@@ -406,6 +1362,8 @@ inline Motion getMotion(MotionState state) {
             return lieMotion;
         case WALKING:
             return walkMotion;
+        case BACKWARD:
+            return backwardMotion;
         case TURNING_RIGHT:
             return turnRightMotion;
         case TURNING_LEFT:
